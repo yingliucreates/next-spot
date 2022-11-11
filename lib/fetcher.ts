@@ -1,11 +1,12 @@
+/*
+	http://localhost:3000/api/signin
+	http://localhost:3000/api/signup
+ */
 export default function fetcher(url: string, data = undefined) {
-	console.log('wl--->', `${window.location}`);
-	return fetch(`${window.location}/api${url}`, {
+	return fetch(`${window.location.origin}/api${url}`, {
 		method: data ? 'POST' : 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json'
-		},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(data)
 	});
 }

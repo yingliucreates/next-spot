@@ -33,7 +33,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				secure: process.env.NODE_ENV === 'production'
 			})
 		);
-
 		res.json(user);
 	} else {
 		res.json({ error: 'Email or Password is Wrong' });
