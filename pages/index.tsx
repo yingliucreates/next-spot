@@ -5,7 +5,14 @@ import GradientLayout from '../components/gradientLayout';
 
 const Home = () => {
 	return (
-		<GradientLayout color="red" roundImage>
+		<GradientLayout
+			color="red"
+			subtitle="profile"
+			title="Ying Liu"
+			description="16 public playlists"
+			image="https://frontendmasters.github.io/fullstack-app-next-website/images/profile.png"
+			roundImage
+		>
 			<div>home page</div>
 		</GradientLayout>
 	);
