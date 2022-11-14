@@ -32,7 +32,9 @@ const run = async () => {
 		update: {},
 		create: {
 			email: 'user@test.com',
-			password: bcryt.hashSync('password', salt)
+			password: bcryt.hashSync('password', salt),
+			firstName: 'Ying',
+			lastName: 'Liu'
 		}
 	});
 
