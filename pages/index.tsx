@@ -4,14 +4,16 @@ import GradientLayout from '../components/gradientLayout';
 import prisma from '../lib/prisma';
 import { Box, Flex, Text } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/react';
+import { useMe } from '../lib/hooks';
 
 const Home = ({ artists }) => {
+	const { user, isLoading } = useMe();
 	return (
 		<GradientLayout
 			color="red"
 			subtitle="profile"
-			title="Ying Liu"
-			description="16 public playlists"
+			title={`${user?.firstName} ${user?.lastName}`}
+			description={`${user.playlistsCount} public playlists`}
 			image="https://frontendmasters.github.io/fullstack-app-next-website/images/profile.png"
 			roundImage
 		>
