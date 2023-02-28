@@ -1,7 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 import bcryt from 'bcryptjs';
-import { setConfig } from 'next/config';
-import { disconnect } from 'process';
 import { artistsData } from './songsData';
 
 const prisma = new PrismaClient();
@@ -14,6 +12,7 @@ const run = async () => {
 				update: {},
 				create: {
 					name: artist.name,
+					// nested inserts
 					songs: {
 						create: artist.songs.map(song => ({
 							name: song.name,
