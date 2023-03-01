@@ -5,6 +5,7 @@ import { artistsData } from './songsData';
 const prisma = new PrismaClient();
 
 const run = async () => {
+	// Using Promise.all to create or update artists and their songs in parallel
 	await Promise.all(
 		artistsData.map(artist => {
 			return prisma.artist.upsert({
@@ -12,7 +13,7 @@ const run = async () => {
 				update: {},
 				create: {
 					name: artist.name,
-					// nested inserts
+					// Creating nested song inserts using the artist's data
 					songs: {
 						create: artist.songs.map(song => ({
 							name: song.name,
@@ -36,8 +37,9 @@ const run = async () => {
 			lastName: 'Liu'
 		}
 	});
-
+	// Finding all songs in the database
 	const songs = await prisma.song.findMany({});
+	// Using Promise.all to create 10 playlists for the user with the songs found earlier
 	await Promise.all(
 		Array(10)
 			.fill(1)
