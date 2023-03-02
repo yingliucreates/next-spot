@@ -1,5 +1,7 @@
 import { Box, Flex, Input, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+//swr handles data fetching, caching, optimistic updates, refetching and reupdating the cache
+//useSWRConfig is a hook that updates the local cache
 import { useSWRConfig } from 'swr';
 import { auth } from '../lib/mutations';
 import { FC, useState } from 'react';
