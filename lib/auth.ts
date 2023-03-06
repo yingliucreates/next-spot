@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import prisma from './prisma';
 
+//higher-order function to wrap the handler
 export const validateRoute = handler => {
 	return async (req, res) => {
 		// rename TRAX_ACCESS_TOKEN to token
