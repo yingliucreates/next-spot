@@ -13,7 +13,7 @@ const Home = ({ artists }) => {
 			color="red"
 			subtitle="profile"
 			title={`${user?.firstName} ${user?.lastName}`}
-			description={`${user.playlistsCount} public playlists`}
+			description={`${user?.playlistsCount} public playlists`}
 			image="https://frontendmasters.github.io/fullstack-app-next-website/images/profile.png"
 			roundImage
 		>
