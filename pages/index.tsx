@@ -34,7 +34,7 @@ const Home = ({ artists }) => {
 								width="100%"
 							></Box>
 							<Image
-								src="https://placekitten.com/200/200"
+								src={`https://picsum.photos/400?random=${artist.id}`}
 								borderRadius="100%"
 							/>
 							<Box marginTop="20px">
