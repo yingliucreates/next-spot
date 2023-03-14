@@ -3,6 +3,7 @@ import fetcher from './fetcher';
 
 export const useMe = () => {
 	const { data, error } = useSWR('/me', fetcher); //(route as cacheKey, fetcher )
+	console.log(data);
 	return {
 		user: data,
 		isLoading: !data && !error,

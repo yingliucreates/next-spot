@@ -13,14 +13,14 @@ const Home = ({ artists }) => {
 			color="red"
 			subtitle="profile"
 			title={`${user?.firstName} ${user?.lastName}`}
-			description={`${user.playlistsCount} public playlists`}
+			description={`${user?.playlistsCount} public playlists`}
 			image="https://frontendmasters.github.io/fullstack-app-next-website/images/profile.png"
 			roundImage
 		>
 			<Box color="white" paddingX="40px">
 				<Box marginBottom="40px">
 					<Text fontSize="2xl" fontWeight="bold">
-						Top artist this month
+						Top artists this month
 					</Text>
 					<Text fontSize="md">only visible to you</Text>
 				</Box>
@@ -34,7 +34,7 @@ const Home = ({ artists }) => {
 								width="100%"
 							></Box>
 							<Image
-								src="https://placekitten.com/200/200"
+								src={`https://picsum.photos/400?random=${artist.id}`}
 								borderRadius="100%"
 							/>
 							<Box marginTop="20px">
@@ -48,6 +48,16 @@ const Home = ({ artists }) => {
 		</GradientLayout>
 	);
 };
+
+/*
+Any page in Pages directory has the ability to do what's called server side data fetching whereas a component (eg.side bar - we had to make a client side call to get the playlists for the sidebar) does not. But for a page, we could actually get the data server side before it renders.
+
+Then we ask ourselves: is the data on here going to be changing while the user is looking at it?
+
+If that's the case, we'd probably want to do a client side. But is the data on this page always going to stay the same after the initial render? If that's the case, we could probably do it server side. So there's no wrong answer here. We can go any direction we want.
+
+If we do it server side, we don't need the hooks or the API routes, we don't need any of that.
+*/
 
 export const getServerSideProps = async () => {
 	const artists = await prisma.artist.findMany({});
