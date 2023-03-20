@@ -1,6 +1,16 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { StoreProvider } from 'easy-peasy';
 import PlayerLayout from '../components/playerLayout';
 import 'reset-css';
+import { store } from '../lib/store';
+
+/** 
+workaround for react18 compatible issue with Easy Peasy
+**/
+type Props = StoreProvider['props'] & { children: React.ReactNode };
+
+const StoreProviderCasted =
+	StoreProvider as unknown as React.ComponentType<Props>;
 
 const theme = extendTheme({
 	colors: {
@@ -33,13 +43,15 @@ const theme = extendTheme({
 const MyApp = ({ Component, pageProps }) => {
 	return (
 		<ChakraProvider theme={theme}>
-			{Component.authPage ? (
-				<Component {...pageProps} />
-			) : (
-				<PlayerLayout>
+			<StoreProviderCasted store={store}>
+				{Component.authPage ? (
 					<Component {...pageProps} />
-				</PlayerLayout>
-			)}
+				) : (
+					<PlayerLayout>
+						<Component {...pageProps} />
+					</PlayerLayout>
+				)}
+			</StoreProviderCasted>
 		</ChakraProvider>
 	);
 };
