@@ -8,7 +8,6 @@ import { store } from '../lib/store';
 workaround for react18 compatible issue with Easy Peasy
 **/
 type Props = StoreProvider['props'] & { children: React.ReactNode };
-
 const StoreProviderCasted =
 	StoreProvider as unknown as React.ComponentType<Props>;
 
