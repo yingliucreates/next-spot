@@ -112,21 +112,26 @@ const Sidebar = () => {
 				<Divider color="gray.800" marginTop="20px" />
 				<Box height="66%" overflowY="auto" paddingY="20px">
 					<List spacing={2}>
-						{playlists.map(playlist => (
-							<ListItem paddingX="20px" key={playlist.id}>
-								<LinkBox>
-									<NextLink
-										href={{
-											pathname: '/playlist/[id]',
-											query: { id: playlist.id }
-										}}
-										passHref
-									>
-										<LinkOverlay>{playlist.name}</LinkOverlay>
-									</NextLink>
-								</LinkBox>
-							</ListItem>
-						))}
+						{playlists
+							.sort(
+								(a, b) =>
+									a.name.split(' ')[1].slice(1) - b.name.split(' ')[1].slice(1)
+							)
+							.map(playlist => (
+								<ListItem paddingX="20px" key={playlist.id}>
+									<LinkBox>
+										<NextLink
+											href={{
+												pathname: '/playlist/[id]',
+												query: { id: playlist.id }
+											}}
+											passHref
+										>
+											<LinkOverlay>{playlist.name}</LinkOverlay>
+										</NextLink>
+									</LinkBox>
+								</ListItem>
+							))}
 					</List>
 				</Box>
 			</Box>
